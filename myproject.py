@@ -1,20 +1,21 @@
 from flask import Flask, request, render_template, send_from_directory, jsonify
-# import sqlite3
-# from PIL import Image
-# from flask.wrappers import Response
-# from Preprocessing import convert_to_image_tensor, invert_image
-# import torch
-# from Model import SiameseConvNet, distance_metric
-# from io import BytesIO
-# import json
-# import math
-# import cv2
-# import matplotlib.pyplot as plt
-# import numpy as np
-# from skimage import img_as_ubyte, io
-# from skimage import measure, morphology
+import sqlite3
+from PIL import Image
+from flask.wrappers import Response
+from Preprocessing import convert_to_image_tensor, invert_image
+import torch
+from Model import SiameseConvNet, distance_metric
+from io import BytesIO
+import json
+import math
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+from skimage import img_as_ubyte, io
+from skimage import measure, morphology
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./frontend/build/static',
+            template_folder='./frontend/build')
 
 
 def load_model():
@@ -44,7 +45,7 @@ def extract_signature(source_image):
     Parameters
     ----------
     source_image : numpy ndarray
-        The pinut image.
+        The pinut image.cv2
     Returns
     -------
     numpy ndarray
@@ -131,7 +132,7 @@ def main():
 
 @app.route('/')
 def index():
-    return (app.send_static_file('index.html'))
+    return render_template('index.html')
 
 
 @app.route('/upload', methods=['POST'])
