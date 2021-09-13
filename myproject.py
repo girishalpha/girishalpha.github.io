@@ -14,8 +14,7 @@ import numpy as np
 from skimage import img_as_ubyte, io
 from skimage import measure, morphology
 
-app = Flask(__name__, static_folder='./frontend/build/static',
-            template_folder='./frontend/build')
+app = Flask(__name__)
 
 
 def load_model():
