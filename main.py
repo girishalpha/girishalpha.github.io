@@ -123,9 +123,7 @@ def main():
     cursor.execute(CREATE_TABLE)
     cursor.connection.commit()
     DELETE_DATA = """DELETE FROM signatures"""
-    cursor1 = connect_to_db().cursor()
-    cursor1.execute(DELETE_DATA)
-    cursor1.connection.commit()
+   
     # For heroku, remove this line. We'll use gunicorn to run the app
     app.run()  # app.run(debug=True)
 
