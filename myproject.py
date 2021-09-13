@@ -131,7 +131,7 @@ def main():
 
 @app.route('/')
 def index():
-    return ('index.html')
+    return (app.send_static_file('index.html'))
 
 
 @app.route('/upload', methods=['POST'])
